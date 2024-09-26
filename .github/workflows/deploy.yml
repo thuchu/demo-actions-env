@@ -2,21 +2,21 @@ name: Deployment
 env:
   MONGODB_DB_NAME: gha-demo
 on:
-  workflow_dispatch: 
+  workflow_dispatch:
   push:
     branches:
       - main
       - dev
-    paths-ignore: 
-      - '**.md'
-      - 'README.md'
-      - '.github/workflows/**'
+    paths-ignore:
+      - "**.md"
+      - "README.md"
+      - ".github/workflows/**"
 jobs:
   test:
     env:
       MONGODB_CLUSTER_ADDRESS: cluster0.sgan9.mongodb.net
-      MONGODB_USERNAME: hucon98
-      MONGODB_PASSWORD: i0DSnhuEr1Z3iMzr
+      MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME}}
+      MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD}}
       PORT: 8080
     runs-on: ubuntu-latest
     steps:
@@ -38,5 +38,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Output information
-        run: |        
+        run: |
           echo "..."
